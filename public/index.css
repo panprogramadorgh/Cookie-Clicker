@@ -29,6 +29,7 @@
 
 body {
   background-color: var(--light-background);
+  position: relative;
   /* cursor: url(./static/images/cursors/doble_clicker.png) 0 0, auto; */
 }
 body.dark {
@@ -80,7 +81,7 @@ header .theme-button-container #switch-theme.dark * {
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 350px);
+  height: calc(100vh - 500px);
 }
 .main-container .blocking-background {
   display: none;
@@ -106,7 +107,7 @@ header .theme-button-container #switch-theme.dark * {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  background-color: #fefefe;
+  background-color: var(--light-background);
   width: 300px;
   height: 400px;
   padding: 30px;
@@ -116,6 +117,10 @@ header .theme-button-container #switch-theme.dark * {
 }
 .card.dark {
   box-shadow: none;
+  background-color: var(--dark-background);
+}
+.card *.dark {
+  color: var(--dark-color);
 }
 
 .card.window {
@@ -156,16 +161,13 @@ header .theme-button-container #switch-theme.dark * {
 .card.buy.dark {
   background-color: var(--dark-foreground);
 }
-.card.buy *.dark {
-  color: var(--dark-color);
-}
 .card.buy:hover {
   cursor: pointer;
 }
 
 .cursor.card,
 .active.card {
-  background-color: main(--light-background);
+  background-color: var(--light-background);
   position: relative;
   display: inline-flex;
   flex-flow: column nowrap;
@@ -377,6 +379,9 @@ header .theme-button-container #switch-theme.dark * {
   }
   header h3 {
     font-size: 1.5rem;
+  }
+  .main-container {
+    height: calc(100vh - 300px);
   }
   .main-container .buy-container {
     position: relative;
