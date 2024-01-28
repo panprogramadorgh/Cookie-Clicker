@@ -1,20 +1,46 @@
+:root {
+  --main: #0099ff;
+  --main-transparent: #0099ff11;
+
+  --light-background: #fafafa;
+  --light-foreground: #fff;
+  --light-color: #222;
+  --light-color-subtitle: #444;
+  --light-blocking-background: #0003;
+
+  --dark-background: #22222a;
+  --dark-foreground: #474754;
+  --dark-color: #fff;
+  --dark-color-subtitle: #ccc;
+  --dark-blocking-background: #fff7;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: sans-serif;
-  color: #222;
+  color: var(--light-color);
+  transition: all 0.2s;
+}
+*.dark {
+  color: var(-dark-color);
 }
 
 body {
-  background-color: #fafafa;
+  background-color: var(--light-background);
   /* cursor: url(./static/images/cursors/doble_clicker.png) 0 0, auto; */
+}
+body.dark {
+  background-color: var(--dark-background);
 }
 
 header {
   text-align: center;
   padding-top: 100px;
-  background: linear-gradient(#eaeaea, #fafafa);
+}
+header *.dark {
+  color: var(--dark-color);
 }
 header h1 {
   font-size: 3rem;
@@ -23,8 +49,30 @@ header h1 {
 header h3 {
   font-size: 1.8rem;
   font-style: italic;
-  color: #444;
+  color: var(--light-color-subtitle);
   font-weight: 800;
+}
+header h3.dark {
+  color: var(--dark-color-subtitle);
+}
+header .theme-button-container {
+  text-align: right;
+  margin-right: 30px;
+}
+header .theme-button-container #switch-theme {
+  background-color: var(--light-foreground);
+  outline: 1px solid #0002;
+  border: none;
+  padding: 10px;
+  padding-bottom: 7px;
+  font-size: 1.2rem;
+  border-radius: 1rem;
+}
+header .theme-button-container #switch-theme.dark {
+  background-color: var(--dark-foreground);
+}
+header .theme-button-container #switch-theme.dark * {
+  color: var(--dark-color);
 }
 
 .main-container {
@@ -41,10 +89,13 @@ header h3 {
   top: -10px;
   width: 100vw;
   height: 100vh;
-  background-color: #0003;
+  background-color: var(--light-blocking-background);
   backdrop-filter: blur(2px);
   position: absolute;
   z-index: 100;
+}
+.main-container .blocking-background.dark {
+  background-color: var(--dark-blocking-background);
 }
 .main-container .blocking-background.active {
   display: block;
@@ -63,17 +114,28 @@ header h3 {
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
     rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
+.card.dark {
+  box-shadow: none;
+}
 
 .card.window {
+  background-color: var(--light-foreground);
   position: absolute;
   display: none;
   width: auto;
   height: auto;
   z-index: 200;
 }
+.card.window.dark {
+  background-color: var(--dark-foreground);
+}
+.card.window *.dark {
+  color: var(--dark-color);
+}
 .card.window .window-info {
   padding: 10px 0 30px 0;
 }
+
 .card.window .window-info .title {
   display: inline-block;
   font-size: 2rem;
@@ -90,9 +152,20 @@ header h3 {
   text-align: center;
   width: 40vw;
 }
+
+.card.buy.dark {
+  background-color: var(--dark-foreground);
+}
+.card.buy *.dark {
+  color: var(--dark-color);
+}
+.card.buy:hover {
+  cursor: pointer;
+}
+
 .cursor.card,
 .active.card {
-  background-color: #fff;
+  background-color: main(--light-background);
   position: relative;
   display: inline-flex;
   flex-flow: column nowrap;
@@ -100,9 +173,18 @@ header h3 {
   height: auto;
   max-width: 200px;
 }
+.cursor.card.dark,
+.active.card.dark {
+  background-color: var(--dark-background);
+}
+.cursor.card.dark *,
+.active.card.dark * {
+  color: var(--dark-color);
+}
+
 .cursor.card.current {
-  outline: 1px solid #09f;
-  background-color: #09f1;
+  outline: 1px solid var(--main);
+  background-color: var(--main-transparent);
 }
 .cursor.card .name,
 .active.card .name {
@@ -111,7 +193,7 @@ header h3 {
 }
 .cursor.card .card.stats,
 .active.card .card.stats {
-  background-color: transparent;
+  background-color: var(--dark-blocking-background);
   backdrop-filter: blur(10px);
   display: none;
   position: absolute;
@@ -131,6 +213,10 @@ header h3 {
   display: flex;
   align-items: flex-start;
 }
+.active.card:hover,
+.cursor.card:hover {
+  cursor: pointer;
+}
 
 .close-window {
   position: absolute;
@@ -138,7 +224,6 @@ header h3 {
   top: 15px;
   width: 25px;
   height: 25px;
-  color: #fff;
 }
 .close-window svg {
   width: 100%;
@@ -146,8 +231,12 @@ header h3 {
 }
 
 .game {
+  background-color: var(--light-background);
   position: relative;
   justify-content: space-evenly;
+}
+.game.dark {
+  background-color: var(--dark-foreground);
 }
 
 .active {
@@ -205,16 +294,27 @@ header h3 {
 }
 
 .cookie-counter {
+  color: var(--light-color);
   text-align: center;
   font-size: 2rem;
   font-weight: 600;
   padding-bottom: 20px;
 }
+.cookie-counter.dark {
+  color: var(--dark-color);
+}
 .cookie-counter .production {
+  color: var(--light-color-subtitle);
   font-weight: 100;
   font-size: 1.2rem;
   margin: 5px 0;
   line-height: 0.5;
+}
+.cookie-counter .production.dark {
+  color: var(--dark-color-subtitle);
+}
+.cookie-counter .counter.dark {
+  color: var(--dark-color);
 }
 
 @keyframes cookie-click {
@@ -252,7 +352,7 @@ header h3 {
   left: 0;
   font-size: 30px;
   font-weight: 1000;
-  color: #09f;
+  color: var(--main);
   animation: pop-number 1s;
   user-select: none;
 }

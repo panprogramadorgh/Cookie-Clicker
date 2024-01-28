@@ -250,7 +250,6 @@ function generalCookieAnimation() {
   drawCookieChips(4, 6);
 }
 
-// TODO: mejorar como se ven los activos
 function drawActives(overrideOldActives = true) {
   const actives = document.querySelector(".actives");
   if (!actives) return;
@@ -263,7 +262,7 @@ function drawActives(overrideOldActives = true) {
   }
   const activeElementsString = activesData
     .map(({ name, cost, count, profitTime }) => {
-      return `<div class="card active">
+      return `<div class="card active ${window.theme === "dark" ? "dark" : ""}">
       <p class="name">${name}</p>
       <div class="card stats">
         <span class="count">Currently working: ${count}</span>
@@ -353,7 +352,7 @@ function drawCursors(overrideOldCursors = false) {
   // TODO: Mejorar visualizacion de los botones de compra de los cursores
   cursorsElementsString = cursorsData
     .map(({ name, cost, profit }) => {
-      return `<div class="card cursor">
+      return `<div class="card cursor ${window.theme === "dark" ? "dark" : ""}">
       <p class="name">${name}</p>
       <div class="card stats">
         <span class="cost">Cost: ${cost} cookies</span>
@@ -482,6 +481,7 @@ function switchWindowActive(windowName) {
     ".blocking-background"
   );
   blockingBackground.classList.add("active");
+  // window.theme === "dark" ? blockingBackground.classList.add("dark") : "";
   document.body.style.overflow = "hidden";
   document.querySelector("header").scrollIntoView();
   playGameSound("openWindow");
