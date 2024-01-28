@@ -1,13 +1,16 @@
 const express = require("express");
+const notFoundHandler = require("./middleware/notFoundHandler");
+const errorHandler = require("./middleware/errorHandler");
 const server = express();
 
 server.use("/", express.static("./public"));
 server.get("/", (req, res) => {
   res.redirect("./index.html");
 });
+server.use(notFoundHandler);
+server.use(errorHandler);
 
 const PORT = 80;
-const adress = "192.168.1.3";
 server.listen(PORT, () => {
-  console.log(`Server listening at http://${adress}:${PORT}`);
+  console.log(`Server listening at localhost:${PORT}`);
 });
