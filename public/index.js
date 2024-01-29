@@ -416,6 +416,7 @@ function updateCookiesProductionIndicator() {
 }
 
 function playGameSound(soundName, volume = 1) {
+  if (!window.sound) return;
   const sound = gameSounds[soundName];
   if (sound instanceof Array) {
     const audio = new Audio(

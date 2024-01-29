@@ -56,11 +56,14 @@ header h3 {
 header h3.dark {
   color: var(--dark-color-subtitle);
 }
-header .theme-button-container {
+header .settings-container {
   text-align: right;
   margin-right: 30px;
 }
-header .theme-button-container #switch-theme {
+/* */
+
+header .settings-container #switch-sound {
+  margin-right: 10px;
   background-color: var(--light-foreground);
   outline: 1px solid #0002;
   border: none;
@@ -69,10 +72,29 @@ header .theme-button-container #switch-theme {
   font-size: 1.2rem;
   border-radius: 1rem;
 }
-header .theme-button-container #switch-theme.dark {
+header .settings-container #switch-sound.dark {
   background-color: var(--dark-foreground);
 }
-header .theme-button-container #switch-theme.dark * {
+header .settings-container #switch-sound.dark * {
+  color: var(--dark-color);
+}
+
+/* */
+
+header .settings-container #switch-theme {
+  margin-right: 10px;
+  background-color: var(--light-foreground);
+  outline: 1px solid #0002;
+  border: none;
+  padding: 10px;
+  padding-bottom: 7px;
+  font-size: 1.2rem;
+  border-radius: 1rem;
+}
+header .settings-container #switch-theme.dark {
+  background-color: var(--dark-foreground);
+}
+header .settings-container #switch-theme.dark * {
   color: var(--dark-color);
 }
 
